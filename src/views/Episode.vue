@@ -27,7 +27,7 @@
 
       <div class="episode__right-col">
         <h2>Comments</h2>
-        <!-- Comments -->
+        <Comments :comments="comments" @postComment="postComment"/>
       </div>
     </div>
   </div>
@@ -38,10 +38,11 @@
   import ArrowBack from '../assets/icon-arrow-left.svg'
   import EpisodeItem from '../components/EpisodeItem.vue'
   import Characters from '../components/Characters.vue'
-  import { fetchEpisode, fetchCharacters } from '../api'
+  import Comments from '../components/Comments.vue'
+  import { fetchEpisode, fetchCharacters, fetchEpisodeComments, postComment } from '../api'
 
   export default {
-    components: { ArrowBack, EpisodeItem, Characters },
+    components: { ArrowBack, EpisodeItem, Characters, Comments },
     props: [ 'id' ],
     data() {
       return{
@@ -49,11 +50,13 @@
         withExtraData: true,
         charactersId: [],
         characters: [],
+        comments: []
       }
     },
     created () {
       this.fetchData()
       this.fetchCharactersData()
+      this.fetchCommentsData()
     },
     methods: {
       async fetchData() {
@@ -63,6 +66,14 @@
       async fetchCharactersData() {
         const fetchedCharacterData = await fetchCharacters(this.charactersId)
         this.characters = fetchedCharacterData.results
+      },
+      async fetchCommentsData() {
+        const fetchedCharacterData = await fetchEpisodeComments(this.id)
+        this.comments = fetchedCharacterData.results
+      },
+      async postComment(params) {
+        const addedComment = await postComment(this.id, params.commentText, params.userName)
+        this.comments = [addedComment, ...this.comments]
       }
     },
     computed: {
