@@ -2,17 +2,16 @@
   <div id="app">
     <TheHeader />
     <main class="main">
-      <Episodes />
+      <router-view />
     </main>
   </div>
 </template>
 
 <script>
   import TheHeader from './components/TheHeader.vue'
-  import Episodes from './views/Episodes.vue'
 
   export default {
-    components: { TheHeader, Episodes },
+    components: { TheHeader },
   }
 
 </script>

@@ -7,7 +7,7 @@ import infiniteScroll from 'vue-infinite-scroll'
 Vue.config.productionTip = false
 
 Vue.use(
-  infiniteScroll
+  infiniteScroll,
 )
 new Vue({
   router,

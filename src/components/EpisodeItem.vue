@@ -7,14 +7,13 @@
       {{ episode.name }}
     </h2>
     <span class="episode-item__season-badge">
-      Season {{ seasonNumber }}
+      <!--Season {{ seasonNumber }}-->
     </span>
 
-    <!-- optional info -->
-    <!--<div class="episode-info">-->
-      <!--<span class="episode-info__label">Air date</span>-->
-      <!--<span class="episode-info__value" v-bind:air_date="episode.air_date">December 2, 2013</span>-->
-    <!--</div>-->
+    <div class="episode-info" v-if="withExtraData">
+      <span class="episode-info__label">Air date</span>
+      <span class="episode-info__value" v-bind:air_date="episode.air_date">December 2, 2013</span>
+    </div>
   </div>
 </template>
 
@@ -24,11 +23,14 @@
       episode: {
         type: Object,
         required: true,
+      },
+      withExtraData: {
+        type: Boolean,
       }
     },
     data() {
       return {
-        seasonNumber: Number(this.episode.episode.substr(1, 2)),
+//        seasonNumber: Number(this.episode.episode.substr(1, 2)),
       }
     },
   }

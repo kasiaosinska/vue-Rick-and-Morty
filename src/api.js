@@ -7,3 +7,16 @@ export const fetchEpisodes = (page = 1, name = '') => {
   )
 }
 
+export const fetchEpisode = ( id = 1 ) => {
+  return (
+    fetch(`${baseUrl}episode/${id}`)
+      .then(response => response.json())
+  )
+}
+
+export const fetchCharacters = ( id = '') => {
+  return (
+    fetch(`${baseUrl}character/${id}`)
+      .then(response => response.json())
+  )
+}

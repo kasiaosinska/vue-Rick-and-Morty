@@ -9,9 +9,8 @@
 
     <ul class="episodes__list">
       <li v-for="episode in episodes" :key="episode.id">
-        <EpisodeItem :episode="episode" />
+        <router-link :to="{name: 'Episode', params: {id: episode.id}}"><EpisodeItem :episode="episode" /></router-link>
       </li>
-      <!-- ... -->
     </ul>
 
     <div class="episodes__loader" v-infinite-scroll="fetchData" infinite-scroll-disabled="checkIfLastPage">

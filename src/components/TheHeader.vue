@@ -9,14 +9,9 @@
       <HamburgerClose v-else/>
     </button>
 
-    <nav class="header__nav" v-bind:class="{'is-visible': isVisible}"> <!-- .is-visible -->
-
-      <a class="header__nav-link" href="/">
-        Episodes
-      </a>
-      <a class="header__nav-link" href="/quiz">
-        Quiz
-      </a>
+    <nav class="header__nav" v-bind:class="{'is-visible': isVisible}">
+      <router-link class="header__nav-link" to="/">Episodes</router-link>
+      <router-link class="header__nav-link" to="/quiz">Quiz</router-link>
     </nav>
   </header>
 </template>

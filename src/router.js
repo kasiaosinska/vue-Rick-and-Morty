@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Episodes from './views/Episodes.vue'
 import Quiz from './views/Quiz.vue'
+import Episode from './views/Episode.vue'
 
 Vue.use(Router)
 
@@ -17,10 +18,14 @@ export default new Router({
     {
       path: '/quiz',
       name: 'Quiz',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "Quiz" */ Quiz)
+      // component: () => import(/* webpackChunkName: "Quiz" */ Quiz)
+      component: Quiz
+    },
+    {
+      path: '/episode/:id',
+      name: 'Episode',
+      component: Episode,
+      props: true,
     }
   ]
 })
