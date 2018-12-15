@@ -1,23 +1,32 @@
 <template>
   <div class="episode-item">
     <h3 class="episode-item__num">
-      Episode {{ episode.id }}
+      Episode {{ episodeData.episodeNumber }}
     </h3>
     <h2 class="episode-item__name">
       {{ episode.name }}
     </h2>
     <span class="episode-item__season-badge">
-      <!--Season {{ seasonNumber }}-->
+      Season {{ episodeData.seasonNumber }}
     </span>
 
     <div class="episode-info" v-if="withExtraData">
       <span class="episode-info__label">Air date</span>
-      <span class="episode-info__value" v-bind:air_date="episode.air_date">December 2, 2013</span>
+      <span class="episode-info__value">{{ episode.air_date}}</span>
     </div>
   </div>
 </template>
 
 <script>
+
+  const getEpisodeData = id => {
+    const [season, episode] = id.slice(1).split(/e|E/)
+    return {
+      seasonNumber: Number(season),
+      episodeNumber: Number(episode),
+    }
+  }
+
   export default {
     props: {
       episode: {
@@ -28,11 +37,11 @@
         type: Boolean,
       }
     },
-    data() {
-      return {
-//        seasonNumber: Number(this.episode.episode.substr(1, 2)),
+    computed: {
+      episodeData() {
+        return getEpisodeData(this.episode.episode)
       }
-    },
+    }
   }
 </script>
 

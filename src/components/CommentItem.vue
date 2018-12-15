@@ -3,7 +3,7 @@
     <header class="base-item__header">
       <div class="base-item__header-content">
         <h3 class="base-item__title">{{ comment.author }}</h3>
-        <span class="base-item__subtitle">1 day ago</span>
+        <span class="base-item__subtitle">{{ getDate }}</span>
       </div>
     </header>
 
@@ -14,6 +14,13 @@
 </template>
 
 <script>
+
+  import moment from 'moment'
+
+  const parseDate = date => {
+    return moment(date, "YYYY-MM-DDTHH:mm:ss.SSS").fromNow();
+  }
+
   export default {
     props: {
       comment: {
@@ -21,5 +28,10 @@
         required: true,
       }
     },
+    computed: {
+      getDate() {
+        return parseDate(this.comment.created)
+      }
+    }
   }
 </script>

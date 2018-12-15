@@ -9,7 +9,6 @@
 
     <div class="episode__content">
       <div class="episode__left-col">
-        <!-- Episode Item with extra info -->
         <EpisodeItem :episode="episode" :withExtraData="withExtraData" />
         <h2>Characters</h2>
         <ul class="characters-list">
@@ -17,7 +16,6 @@
             <Characters :character="character"/>
           </li>
         </ul>
-
           <div class="link-container">
             <button class="primary-link is-big">
               Show more
@@ -36,14 +34,13 @@
 <script>
 
   import ArrowBack from '../assets/icon-arrow-left.svg'
-  import EpisodeItem from '../components/EpisodeItem.vue'
+  import EpisodeItem from '../components/EpisodeItem/EpisodeItem.vue'
   import Characters from '../components/Characters.vue'
   import Comments from '../components/Comments.vue'
   import { fetchEpisode, fetchCharacters, fetchEpisodeComments, postComment } from '../api'
 
   export default {
     components: { ArrowBack, EpisodeItem, Characters, Comments },
-    props: [ 'id' ],
     data() {
       return{
         episode: {},
@@ -60,8 +57,7 @@
     },
     methods: {
       async fetchData() {
-        const fetchedEpisodeData = await fetchEpisode(this.id)
-        this.episode = fetchedEpisodeData
+        this.episode = await fetchEpisode(this.id)
       },
       async fetchCharactersData() {
         const fetchedCharacterData = await fetchCharacters(this.charactersId)

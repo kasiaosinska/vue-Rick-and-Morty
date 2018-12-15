@@ -22,7 +22,7 @@
 
 <script>
   import SearchIcon from '../assets/icon-search.svg'
-  import EpisodeItem from '../components/EpisodeItem.vue'
+  import EpisodeItem from '../components/EpisodeItem/EpisodeItem.vue'
   import debounce from 'lodash.debounce'
   import { fetchEpisodes } from '../api'
 
