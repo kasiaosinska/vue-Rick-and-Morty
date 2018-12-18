@@ -12,7 +12,7 @@
 
     <div class="episode-info" v-if="withExtraData">
       <span class="episode-info__label">Air date</span>
-      <span class="episode-info__value">{{ episode.air_date}}</span>
+      <span class="episode-info__value">{{ episode.air_date }}</span>
     </div>
   </div>
 </template>
@@ -39,6 +39,9 @@
     },
     computed: {
       episodeData() {
+        if (!this.episode.episode) {
+          return {}
+        }
         return getEpisodeData(this.episode.episode)
       }
     }
